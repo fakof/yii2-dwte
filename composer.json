@@ -22,11 +22,11 @@
         }
     },
     "scripts": {
-        "post-package-install": [
-            "php /var/www/yii migrate --migrationPath=@vendor/fakof/yii2-dwte/src/migrations --interactive=0"
+        "post-install-cmd": [
+            "php ./yii migrate --migrationPath=@vendor/fakof/yii2-dwte/src/migrations --interactive=0"
         ],
-        "post-package-update": [
-            "php /var/www/yii migrate --migrationPath=@vendor/fakof/yii2-dwte/src/migrations --interactive=0"
+        "post-update-cmd": [
+            "php ./yii migrate --migrationPath=@vendor/fakof/yii2-dwte/src/migrations --interactive=0"
         ]
     },
     "extra": {
