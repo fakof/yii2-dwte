@@ -1,0 +1,38 @@
+{
+    "name": "fakof/yii2-dwte",
+    "description": "External server",
+    "type": "yii2-extension",
+    "keywords": ["yii2","extension","testwork","dw"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "fakof",
+            "email": "fak-o.f@mail.ru"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2.0.14",
+        "yiisoft/yii2-queue": "^2.3",
+        "yiisoft/yii2-redis": "^2.0",
+        "php-ffmpeg/php-ffmpeg": "^0.14.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "fakof\\dwte\\": "src"
+        }
+    },
+    "scripts": {
+        "post-package-install": [
+            "php /var/www/yii migrate --migrationPath=@vendor/fakof/yii2-dwte/src/migrations --interactive=0"
+        ],
+        "post-package-update": [
+            "php /var/www/yii migrate --migrationPath=@vendor/fakof/yii2-dwte/src/migrations --interactive=0"
+        ]
+    },
+    "extra": {
+        "bootstrap": "fakof\\dwte\\Bootstrap"
+    },
+  "config": {
+    "process-timeout": 0
+  }
+}
