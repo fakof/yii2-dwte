@@ -21,14 +21,6 @@
             "fakof\\dwte\\": "src"
         }
     },
-    "scripts": {
-        "post-install-cmd": [
-            "php ./yii migrate --migrationPath=@vendor/fakof/yii2-dwte/src/migrations --interactive=0"
-        ],
-        "post-update-cmd": [
-            "php ./yii migrate --migrationPath=@vendor/fakof/yii2-dwte/src/migrations --interactive=0"
-        ]
-    },
     "extra": {
         "bootstrap": "fakof\\dwte\\Bootstrap"
     },

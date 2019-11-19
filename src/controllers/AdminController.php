@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\modules\external\controllers;
+namespace fakof\dwte\controllers;
 
 
 use yii\filters\AccessControl;

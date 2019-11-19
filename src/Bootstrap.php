@@ -2,27 +2,32 @@
 
 namespace fakof\dwte;
 
-use Yii;
-use yii\web\Application;
+use yii\base\Application as BaseApp;
+use yii\console\Application as ConsoleApp;
+use yii\web\Application as WebApp;
 use yii\base\BootstrapInterface;
 
 class Bootstrap implements BootstrapInterface
 {
     /**
      * Bootstrap method to be called during application bootstrap stage.
-     * @param Application $app the application currently running
+     * @param ConsoleApp|WebApp $app the application currently running
      */
     public function bootstrap($app)
     {
-        if (!(Yii::$app instanceof Application)) {
-            return;
-        }
-
-        $app->on(Application::EVENT_BEFORE_REQUEST, function () {
-            Yii::$app->user->loginUrl = ['cabinet/login'];
-            Yii::$app->controllerMap = [
-                'cabinet' => 'fakof\dwte\controllers\CabinetController',
-            ];
+        $app->on(BaseApp::EVENT_BEFORE_REQUEST, function () use ($app) {
+            if ($app instanceof WebApp) {
+                $app->user->loginUrl = ['cabinet/login'];
+                $app->controllerMap = [
+                    'cabinet' => 'fakof\dwte\controllers\CabinetController',
+                    'admin' => 'fakof\dwte\controllers\AdminController',
+                ];
+            }
+            $app->setComponents([
+                'authManager' => [
+                    'class' => 'yii\rbac\DbManager',
+                ],
+            ]);
         });
     }
 }
