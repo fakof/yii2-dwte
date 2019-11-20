@@ -2,6 +2,7 @@
 
 namespace fakof\dwte;
 
+use fakof\dwte\modules\admin\Module;
 use yii\base\Application as BaseApp;
 use yii\console\Application as ConsoleApp;
 use yii\web\Application as WebApp;
@@ -20,8 +21,13 @@ class Bootstrap implements BootstrapInterface
                 $app->user->loginUrl = ['cabinet/login'];
                 $app->controllerMap = [
                     'cabinet' => 'fakof\dwte\controllers\CabinetController',
-                    'admin' => 'fakof\dwte\controllers\AdminController',
                 ];
+                $app->setModule('admin', [
+                    'class' => Module::class,
+                ]);
+                $app->urlManager->addRules([
+                    '<module:admin>' => '<module>/default/index',
+                ]);
             }
             $app->setComponents([
                 'authManager' => [

@@ -1,14 +1,12 @@
 <?php
 
-
-namespace fakof\dwte\controllers;
-
+namespace fakof\dwte\modules\admin\controllers;
 
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
 
-class AdminController extends Controller
+class DefaultController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -33,6 +31,7 @@ class AdminController extends Controller
             ],
         ];
     }
+
     public function actionIndex()
     {
         return $this->render('index');
