@@ -11,7 +11,7 @@ use yii\web\Controller;
 /**
  * Default controller for the external server module
  */
-class CabinetController extends Controller
+class MainController extends Controller
 {
     public function init()
     {
@@ -50,7 +50,7 @@ class CabinetController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->goHome();
     }
 
     public function actionLogin()
@@ -68,5 +68,11 @@ class CabinetController extends Controller
         return $this->render('login', [
             'model' => $model,
         ]);
+    }
+
+    public function actionLogout()
+    {
+        Yii::$app->user->logout();
+        return $this->goHome();
     }
 }

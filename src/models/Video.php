@@ -2,7 +2,7 @@
 
 namespace fakof\dwte\models;
 
-use fakof\dwte\queries\VideosQuery;
+use fakof\dwte\queries\VideoQuery;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -76,10 +76,10 @@ class Video extends ActiveRecord
 
     /**
      * {@inheritdoc}
-     * @return VideosQuery the active query used by this AR class.
+     * @return VideoQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new VideosQuery(get_called_class());
+        return new VideoQuery(get_called_class());
     }
 }

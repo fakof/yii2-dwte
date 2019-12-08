@@ -2,21 +2,24 @@
 
 namespace fakof\dwte\queries;
 
+use fakof\dwte\models\Video;
+use yii\db\ActiveQuery;
+
 /**
  * This is the ActiveQuery class for [[fakof\dwte\models\Video]].
  *
- * @see fakof\dwte\models\Video
+ * @see \fakof\dwte\models\Video
  */
-class VideosQuery extends \yii\db\ActiveQuery
+class VideoQuery extends ActiveQuery
 {
-    /*public function active()
+    public function moderated()
     {
-        return $this->andWhere('[[status]]=1');
-    }*/
+        return $this->andWhere('[[is_moderated]]=1');
+    }
 
     /**
      * {@inheritdoc}
-     * @return fakof\dwte\models\Video[]|array
+     * @return Video[]|array
      */
     public function all($db = null)
     {
@@ -25,7 +28,7 @@ class VideosQuery extends \yii\db\ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return fakof\dwte\models\Video|array|null
+     * @return Video|array|null
      */
     public function one($db = null)
     {

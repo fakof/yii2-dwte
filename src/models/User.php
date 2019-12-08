@@ -2,7 +2,7 @@
 
 namespace fakof\dwte\models;
 
-use fakof\dwte\queries\UsersQuery;
+use fakof\dwte\queries\UserQuery;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
@@ -80,11 +80,11 @@ class User extends ActiveRecord implements IdentityInterface
 
     /**
      * {@inheritdoc}
-     * @return UsersQuery the active query used by this AR class.
+     * @return UserQuery the active query used by this AR class.
      */
     public static function find()
     {
-        return new UsersQuery(get_called_class());
+        return new UserQuery(get_called_class());
     }
 
     /**

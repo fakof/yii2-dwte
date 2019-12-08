@@ -2,23 +2,19 @@
 
 namespace fakof\dwte\queries;
 
+use fakof\dwte\models\User;
 use yii\db\ActiveQuery;
 
 /**
  * This is the ActiveQuery class for [[fakof\dwte\models\User]].
  *
- * @see fakof\dwte\models\User
+ * @see \fakof\dwte\models\User
  */
-class UsersQuery extends ActiveQuery
+class UserQuery extends ActiveQuery
 {
-    /*public function active()
-    {
-        return $this->andWhere('[[status]]=1');
-    }*/
-
     /**
      * {@inheritdoc}
-     * @return fakof\dwte\models\User[]|array
+     * @return User[]|array
      */
     public function all($db = null)
     {
@@ -27,7 +23,7 @@ class UsersQuery extends ActiveQuery
 
     /**
      * {@inheritdoc}
-     * @return fakof\dwte\models\User|array|null
+     * @return User|array|null
      */
     public function one($db = null)
     {

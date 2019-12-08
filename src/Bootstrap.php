@@ -2,7 +2,9 @@
 
 namespace fakof\dwte;
 
-use fakof\dwte\modules\admin\Module;
+use fakof\dwte\models\User;
+use fakof\dwte\modules\admin\Module as AdminModule;
+use fakof\dwte\modules\cabinet\Module as CabinetModule;
 use yii\base\Application as BaseApp;
 use yii\console\Application as ConsoleApp;
 use yii\web\Application as WebApp;
@@ -18,21 +20,33 @@ class Bootstrap implements BootstrapInterface
     {
         $app->on(BaseApp::EVENT_BEFORE_REQUEST, function () use ($app) {
             if ($app instanceof WebApp) {
-                $app->user->loginUrl = ['cabinet/login'];
-                $app->controllerMap = [
-                    'cabinet' => 'fakof\dwte\controllers\CabinetController',
-                ];
-                $app->setModule('admin', [
-                    'class' => Module::class,
+                $app->controllerMap = array_merge(
+                    $app->controllerMap,
+                    [
+                        'main' => 'fakof\dwte\controllers\MainController',
+                    ]
+                );
+                $app->setModules([
+                    'admin' => [
+                        'class' => AdminModule::class,
+                    ],
+                    'cabinet' => [
+                        'class' => CabinetModule::class
+                    ]
                 ]);
                 $app->urlManager->addRules([
-                    '<module:admin>' => '<module>/default/index',
+                    'login' => 'main/login',
                 ]);
             }
             $app->setComponents([
                 'authManager' => [
                     'class' => 'yii\rbac\DbManager',
                 ],
+                'user' => [
+                    'identityClass' => User::class,
+                    'enableAutoLogin' => true,
+                    'loginUrl' => ['/login'],
+                ]
             ]);
         });
     }
