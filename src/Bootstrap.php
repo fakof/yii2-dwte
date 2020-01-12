@@ -43,6 +43,7 @@ class Bootstrap implements BootstrapInterface
                     'class' => 'yii\rbac\DbManager',
                 ],
                 'user' => [
+                    'class' => \yii\web\User::class,
                     'identityClass' => User::class,
                     'enableAutoLogin' => true,
                     'loginUrl' => ['/login'],
